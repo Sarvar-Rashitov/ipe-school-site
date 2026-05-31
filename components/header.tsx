@@ -3,16 +3,14 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X, Phone, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLocale } from '@/lib/locale-context';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const pathname = usePathname();
-  const router = useRouter();
-  const currentLang = pathname.split('/')[1] || 'en';
+  const { locale, cycleLocale } = useLocale();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,26 +20,17 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const langCycle = ['en', 'uz', 'ru'];
   const langLabels: Record<string, string> = {
     en: 'EN',
     uz: "O'z",
     ru: 'Ru'
   };
 
-  const cycleLang = () => {
-    const currentIndex = langCycle.indexOf(currentLang);
-    const nextIndex = (currentIndex + 1) % langCycle.length;
-    const nextLang = langCycle[nextIndex];
-    const newPath = pathname.replace(/^\/(en|uz|ru)/, `/${nextLang}`).replace(/^\/?$/, `/${nextLang}`);
-    router.push(newPath);
-  };
-
   const links = [
-    { label: currentLang === 'en' ? 'Home' : currentLang === 'uz' ? 'Bosh sahifa' : 'Дом', href: '/' },
-    { label: currentLang === 'en' ? 'Courses' : currentLang === 'uz' ? 'Kurslar' : 'Курсы', href: '/courses' },
-    { label: currentLang === 'en' ? 'Team' : currentLang === 'uz' ? 'Jamoa' : 'Команда', href: '/team' },
-    { label: currentLang === 'en' ? 'Contact' : currentLang === 'uz' ? 'Aloqa' : 'Контакт', href: '/contact' },
+    { label: locale === 'en' ? 'Home' : locale === 'uz' ? 'Bosh sahifa' : 'Дом', href: '/' },
+    { label: locale === 'en' ? 'Courses' : locale === 'uz' ? 'Kurslar' : 'Курсы', href: '/courses' },
+    { label: locale === 'en' ? 'Team' : locale === 'uz' ? 'Jamoa' : 'Команда', href: '/team' },
+    { label: locale === 'en' ? 'Contact' : locale === 'uz' ? 'Aloqa' : 'Контакт', href: '/contact' },
   ];
 
   return (
@@ -96,10 +85,10 @@ export function Header() {
             </a>
 
             <button
-              onClick={cycleLang}
+              onClick={cycleLocale}
               className="text-xs px-3 py-1.5 rounded bg-primary text-white font-medium transition-colors hover:bg-primary/90"
             >
-              {langLabels[currentLang]}
+              {langLabels[locale]}
             </button>
 
             <button
@@ -127,10 +116,10 @@ export function Header() {
             ))}
             <div className="flex gap-2 border-t pt-3">
               <button
-                onClick={() => { cycleLang(); setIsMobileOpen(false); }}
+                onClick={() => { cycleLocale(); setIsMobileOpen(false); }}
                 className="text-xs px-3 py-1.5 rounded bg-primary text-white font-medium"
               >
-                {langLabels[currentLang]}
+                {langLabels[locale]}
               </button>
               <Link href="tel:+998712005060" onClick={() => setIsMobileOpen(false)}>
                 <Button variant="outline" size="sm">

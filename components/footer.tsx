@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Youtube, Instagram, MessageCircle, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
-import { IPELogo } from './logo';
 
 export function Footer() {
   const footerLinks = [
@@ -51,7 +51,7 @@ export function Footer() {
           {/* Brand Section */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <IPELogo className="w-12 h-12" />
+              <Image src="/logo.png" alt="IPE School" width={48} height={48} className="w-12 h-12" />
               <div>
                 <p className="font-bold text-lg">IPE School</p>
                 <p className="text-sm text-background/70">Inter Prof Education</p>
