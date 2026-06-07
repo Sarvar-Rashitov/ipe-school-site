@@ -10,7 +10,6 @@ export function Footer() {
   const quickLinks = [
     { label: t.home, href: '/' },
     { label: t.courses, href: '/courses' },
-    { label: t.teachers, href: '/#teachers' },
     { label: t.contact, href: '/contact' },
   ];
 

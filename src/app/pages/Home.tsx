@@ -1,7 +1,6 @@
 import { Hero } from '../components/sections/Hero';
 import { WhyChooseUs } from '../components/sections/WhyChooseUs';
 import { CoursesSection } from '../components/sections/CoursesSection';
-import { TeamSection } from '../components/sections/TeamSection';
 import { FAQ } from '../components/sections/FAQ';
 import { CTASection } from '../components/sections/CTASection';
 import { VideoCarousel } from '../components/sections/VideoCarousel';
@@ -44,13 +43,12 @@ export function Home({ onOpenFreeLesson }: HomeProps) {
   const parentsSubtitle = language === 'uz' ? "Ota-onalar uchun foydali ma'lumotlar" : language === 'ru' ? 'Полезная информация для родителей' : 'Useful information for parents';
 
   return (
-    <div>
+    <div className="pb-20">
       <Hero onOpenFreeLesson={onOpenFreeLesson} />
       <AboutSection />
       <WhyChooseUs />
       <SocialLinks />
       <CoursesSection onOpenFreeLesson={onOpenFreeLesson} />
-      <TeamSection />
       <VideoCarousel
         title={reviewsTitle}
         subtitle={reviewsSubtitle}

@@ -35,7 +35,7 @@ export function CoursesSection({ onOpenFreeLesson }: CoursesSectionProps) {
 
   return (
     <section id="courses" ref={ref} className="py-24 bg-white">
-      <div className="container mx-auto px-4">
+      <div className="max-w-5xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { Clock, ArrowRight, BookOpen, Users, Award, Code2, Globe, Calculator, Brain } from 'lucide-react';
+import { Clock, ArrowRight, BookOpen, Users, Award, Code2, Globe, Calculator, Brain, Sparkles } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
@@ -46,20 +46,29 @@ export function Courses({ onOpenFreeLesson }: CoursesProps) {
     : courses.filter(c => c.category === activeCategory);
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-gray-50">
+    <div className="min-h-screen pt-24 pb-20 bg-gradient-to-br from-slate-50 via-white to-blue-50">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 py-20">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900" />
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-20 left-1/4 w-72 h-72 bg-blue-500 rounded-full blur-[128px]" />
+          <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-purple-500 rounded-full blur-[128px]" />
+        </div>
+        <div className="container mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-white/80 text-sm mb-6 border border-white/10">
+              <Sparkles className="w-4 h-4" />
+              {language === 'uz' ? '10+ yillik tajriba' : language === 'ru' ? '10+ лет опыта' : '10+ years of experience'}
+            </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
               {language === 'uz' ? 'Bizning kurslar' : language === 'ru' ? 'Наши курсы' : 'Our Courses'}
             </h1>
-            <p className="text-xl text-blue-200/80 leading-relaxed">
+            <p className="text-xl text-blue-200/80 leading-relaxed max-w-2xl mx-auto">
               {language === 'uz'
                 ? 'IT, SAT, matematika va tillarni professional darajada o\'rganing'
                 : language === 'ru'
@@ -70,91 +79,56 @@ export function Courses({ onOpenFreeLesson }: CoursesProps) {
         </div>
       </section>
 
-      {/* Kurslar bo'yicha ma'lumot */}
-      <section className="py-12 bg-white">
+      {/* Features */}
+      <section className="py-12 -mt-8 relative z-10">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-6xl mx-auto"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="border-0 shadow-md">
-                <CardContent className="p-6 text-center">
-                  <div className="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <Users className="w-7 h-7 text-blue-600" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              { icon: Users, gradient: 'from-blue-500 to-cyan-500', title_uz: 'Kichik guruhlar', title_ru: 'Малые группы', title_en: 'Small Groups', desc_uz: '6-8 nafar talaba, har biriga individual e\'tibor', desc_ru: '6-8 студентов, индивидуальное внимание каждому', desc_en: '6-8 students, individual attention to each' },
+              { icon: BookOpen, gradient: 'from-purple-500 to-pink-500', title_uz: 'Zamonaviy dasturlar', title_ru: 'Современные программы', title_en: 'Modern Programs', desc_uz: 'Eng so\'nggi va samarali o\'qitish metodlari', desc_ru: 'Самые современные и эффективные методы обучения', desc_en: 'Most modern and effective teaching methods' },
+              { icon: Award, gradient: 'from-amber-500 to-orange-500', title_uz: 'Sertifikatlar', title_ru: 'Сертификаты', title_en: 'Certificates', desc_uz: 'Kurs yakunida rasmiy sertifikat olish', desc_ru: 'Получение официального сертификата по окончании курса', desc_en: 'Receive official certificate upon completion' },
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="bg-white/70 backdrop-blur-xl rounded-2xl p-6 border border-white/50 shadow-xl shadow-blue-500/5"
+                >
+                  <div className={`w-14 h-14 bg-gradient-to-br ${item.gradient} rounded-xl flex items-center justify-center mb-4 shadow-lg`}>
+                    <Icon className="w-7 h-7 text-white" />
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-2">
-                    {language === 'uz' ? 'Kichik guruhlar' : language === 'ru' ? 'Малые группы' : 'Small Groups'}
+                    {item[`title_${language}` as keyof typeof item]}
                   </h3>
-                  <p className="text-gray-600 text-sm">
-                    {language === 'uz'
-                      ? '6-8 nafar talaba, har biriga individual e\'tibor'
-                      : language === 'ru'
-                      ? '6-8 студентов, индивидуальное внимание каждому'
-                      : '6-8 students, individual attention to each'}
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {item[`desc_${language}` as keyof typeof item]}
                   </p>
-                </CardContent>
-              </Card>
-
-              <Card className="border-0 shadow-md">
-                <CardContent className="p-6 text-center">
-                  <div className="w-14 h-14 bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <BookOpen className="w-7 h-7 text-purple-600" />
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
-                    {language === 'uz' ? 'Zamonaviy dasturlar' : language === 'ru' ? 'Современные программы' : 'Modern Programs'}
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    {language === 'uz'
-                      ? 'Eng so\'nggi va samarali o\'qitish metodlari'
-                      : language === 'ru'
-                      ? 'Самые современные и эффективные методы обучения'
-                      : 'Most modern and effective teaching methods'}
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="border-0 shadow-md">
-                <CardContent className="p-6 text-center">
-                  <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-green-50 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <Award className="w-7 h-7 text-green-600" />
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
-                    {language === 'uz' ? 'Sertifikatlar' : language === 'ru' ? 'Сертификаты' : 'Certificates'}
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    {language === 'uz'
-                      ? 'Kurs yakunida rasmiy sertifikat olish'
-                      : language === 'ru'
-                      ? 'Получение официального сертификата по окончании курса'
-                      : 'Receive official certificate upon completion'}
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </motion.div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* Kurslar ro'yxati */}
+      {/* Courses Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="max-w-7xl mx-auto"
           >
-            {/* Category Tabs */}
             <Tabs value={activeCategory} onValueChange={setActiveCategory} className="mb-12">
-              <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 gap-2 h-auto bg-transparent p-0">
+              <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 gap-2 h-auto bg-white/50 backdrop-blur-xl p-1 rounded-xl border border-white/50">
                 {categories.map((cat) => (
                   <TabsTrigger
                     key={cat.id}
                     value={cat.id}
-                    className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white py-3 rounded-lg"
+                    className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white py-3 rounded-lg text-sm font-medium"
                   >
                     {cat.label[language]}
                   </TabsTrigger>
@@ -162,7 +136,6 @@ export function Courses({ onOpenFreeLesson }: CoursesProps) {
               </TabsList>
             </Tabs>
 
-            {/* Courses Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredCourses.map((course, index) => {
                 const IconComponent = categoryIcons[course.category] || BookOpen;
@@ -172,30 +145,22 @@ export function Courses({ onOpenFreeLesson }: CoursesProps) {
                   <motion.div
                     key={course.id}
                     initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.05 }}
                   >
-                    <Card className="group h-full hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-blue-200 overflow-hidden">
-                      {/* Gradient Top Bar */}
+                    <Card className="group h-full bg-white/70 backdrop-blur-xl border border-white/50 shadow-xl shadow-blue-500/5 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 overflow-hidden rounded-2xl">
                       <div className={`h-1.5 bg-gradient-to-r ${gradientClass}`} />
-
                       <CardContent className="p-6">
-                        {/* Icon */}
-                        <div className={`w-14 h-14 bg-gradient-to-br ${gradientClass} rounded-xl flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform`}>
+                        <div className={`w-14 h-14 bg-gradient-to-br ${gradientClass} rounded-xl flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
                           <IconComponent className="w-7 h-7 text-white" />
                         </div>
-
-                        {/* Title */}
                         <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
                           {course.title[language]}
                         </h3>
-
-                        {/* Description */}
                         <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
                           {course.description[language]}
                         </p>
-
-                        {/* Features */}
                         <ul className="space-y-2 mb-6">
                           {course.features[language].slice(0, 3).map((feature, idx) => (
                             <li key={idx} className="flex items-start gap-2 text-sm text-gray-600">
@@ -204,24 +169,20 @@ export function Courses({ onOpenFreeLesson }: CoursesProps) {
                             </li>
                           ))}
                         </ul>
-
-                        {/* Duration */}
-                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-6 pb-6 border-b border-gray-100">
+                        <div className="flex items-center gap-2 text-sm text-gray-500 mb-6 pb-6 border-b border-gray-200/50">
                           <Clock className="w-4 h-4" />
                           <span>{course.duration[language]}</span>
                         </div>
-
-                        {/* Actions */}
                         <div className="space-y-2">
                           <Link to={`/courses/${course.id}`} className="block">
-                            <Button variant="outline" className="w-full group-hover:border-blue-600 group-hover:text-blue-600">
+                            <Button variant="outline" className="w-full border-gray-200 bg-white/50 hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50/50 backdrop-blur-sm">
                               {t.learnMore}
                               <ArrowRight className="ml-2 w-4 h-4" />
                             </Button>
                           </Link>
                           <Button
                             onClick={() => onOpenFreeLesson(course.title[language])}
-                            className={`w-full bg-gradient-to-r ${gradientClass} hover:opacity-90`}
+                            className={`w-full bg-gradient-to-r ${gradientClass} hover:opacity-90 shadow-lg`}
                           >
                             {language === 'uz' ? 'Yozilish' : language === 'ru' ? 'Записаться' : 'Register'}
                           </Button>
@@ -233,12 +194,11 @@ export function Courses({ onOpenFreeLesson }: CoursesProps) {
               })}
             </div>
 
-            {/* Empty State */}
             {filteredCourses.length === 0 && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="text-center py-16"
+                className="text-center py-16 bg-white/50 backdrop-blur-xl rounded-2xl border border-white/50"
               >
                 <p className="text-gray-500 text-lg">
                   {language === 'uz' ? 'Ushbu kategoriyada kurslar yo\'q' : language === 'ru' ? 'В этой категории нет курсов' : 'No courses in this category'}
@@ -249,14 +209,18 @@ export function Courses({ onOpenFreeLesson }: CoursesProps) {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-blue-600 to-purple-600">
-        <div className="container mx-auto px-4">
+      {/* CTA */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700" />
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-1/3 w-64 h-64 bg-white rounded-full blur-[100px]" />
+          <div className="absolute bottom-0 right-1/3 w-80 h-80 bg-blue-300 rounded-full blur-[100px]" />
+        </div>
+        <div className="container mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
@@ -272,7 +236,7 @@ export function Courses({ onOpenFreeLesson }: CoursesProps) {
             <Button
               onClick={() => onOpenFreeLesson()}
               size="lg"
-              className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-12 h-14"
+              className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-12 h-14 shadow-2xl hover:shadow-3xl transition-shadow"
             >
               {t.ctaButton}
               <ArrowRight className="ml-2 w-5 h-5" />

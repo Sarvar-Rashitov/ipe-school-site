@@ -27,7 +27,6 @@ export function Header({ onOpenFreeLesson }: HeaderProps) {
   const navLinks = [
     { label: t.home, href: '/' },
     { label: t.courses, href: '/courses' },
-    { label: language === 'uz' ? 'Jamoa' : language === 'ru' ? 'Команда' : 'Team', href: '/team' },
     { label: t.results, href: '/results' },
     { label: t.contact, href: '/contact' },
   ];
@@ -61,9 +60,9 @@ export function Header({ onOpenFreeLesson }: HeaderProps) {
                 alt="IPE School Logo"
                 className="h-10 w-10 object-contain"
               />
-              <div className="hidden sm:block">
+              <div>
                 <span className="text-lg font-bold text-gray-900">School</span>
-                <div className="text-xs text-gray-500 leading-none">Inter Prof Education</div>
+                <div className="hidden sm:block text-xs text-gray-500 leading-none">Inter Prof Education</div>
               </div>
             </Link>
 

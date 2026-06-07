@@ -53,6 +53,32 @@ A modern, conversion-focused educational center website built with React, TypeSc
    pnpm dev
    ```
 
+## Deployment (Netlify)
+
+### Important: Production Environment Variables
+
+When deploying to Netlify, you MUST set environment variables in Netlify Dashboard:
+
+1. Go to **Site Settings** → **Environment** → **Environment variables**
+2. Add the following variables:
+   ```
+   VITE_TELEGRAM_BOT_TOKEN = your_bot_token
+   VITE_TELEGRAM_CHAT_ID = your_chat_id
+   ```
+3. **Redeploy** your site after adding variables
+
+⚠️ **Note:** `.env.local` is NOT committed to git and NOT available in production builds.
+
+See [NETLIFY_SETUP.md](./NETLIFY_SETUP.md) for detailed instructions.
+
+### Build Production
+
+```bash
+pnpm build
+```
+
+The `dist/` folder is ready for deployment.
+
 ## Features Breakdown
 
 ### Language Switcher

@@ -113,7 +113,7 @@ export function Contact() {
                     {language === 'uz' ? 'Xabar yuboring' : language === 'ru' ? 'Отправьте сообщение' : 'Send a message'}
                   </h2>
 
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                  <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
                     <div className="space-y-2">
                       <Label htmlFor="fullName">{t.fullName}</Label>
                       <Input

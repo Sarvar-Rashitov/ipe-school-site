@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown, Volume2, VolumeX } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useLanguage } from '../../lib/LanguageContext';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
@@ -13,6 +14,7 @@ interface HeroProps {
 const HERO_SHORT_ID = 'IPjaYWFW4qg';
 
 export function Hero({ onOpenFreeLesson }: HeroProps) {
+  const [isMuted, setIsMuted] = useState(true);
   const { t, language } = useLanguage();
   const { ref, isVisible } = useScrollAnimation();
 
@@ -40,7 +42,7 @@ export function Hero({ onOpenFreeLesson }: HeroProps) {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900"
+      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 pt-20"
     >
       {/* Background grid */}
       <div className="absolute inset-0 opacity-10">
@@ -159,12 +161,19 @@ export function Hero({ onOpenFreeLesson }: HeroProps) {
               {/* YouTube Short container - phone-like shape */}
               <div className="relative w-64 md:w-72 rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white/10" style={{ aspectRatio: '9/16' }}>
                 <iframe
-                  src={`https://www.youtube.com/embed/${HERO_SHORT_ID}?autoplay=1&mute=1&loop=1&playlist=${HERO_SHORT_ID}&controls=0&rel=0&playsinline=1&modestbranding=1`}
+                  src={`https://www.youtube.com/embed/${HERO_SHORT_ID}?autoplay=1&mute=${isMuted ? 1 : 0}&loop=1&playlist=${HERO_SHORT_ID}&controls=0&rel=0&playsinline=1&modestbranding=1`}
                   className="w-full h-full"
                   allow="autoplay; encrypted-media"
                   allowFullScreen
                   title="IPE School"
                 />
+                {/* Sound toggle */}
+                <button
+                  onClick={() => setIsMuted(!isMuted)}
+                  className="absolute bottom-4 right-4 z-10 w-10 h-10 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-black/80 transition-all"
+                >
+                  {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+                </button>
               </div>
 
               {/* Floating badge */}

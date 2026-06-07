@@ -7,9 +7,7 @@ export const translations = {
     // Navigation
     home: 'Bosh sahifa',
     courses: 'Kurslar',
-    teachers: "O'qituvchilar",
     results: 'Natijalar',
-    gallery: 'Galereya',
     contact: 'Aloqa',
 
     // Hero
@@ -35,11 +33,6 @@ export const translations = {
     learnMore: 'Batafsil',
     registerFree: 'Bepul darsga yozilish',
 
-    // Teachers
-    ourTeachers: "O'qituvchilar jamoasi",
-    teachersSubtitle: 'Tajribali va malakali mutaxassislar',
-    experience: 'tajriba',
-
     // Results
     studentResults: 'Talabalar natijalari',
     resultsSubtitle: "O'quvchilarimizning yutuqlari",
@@ -47,10 +40,6 @@ export const translations = {
     // Testimonials
     testimonials: 'Fikrlar',
     testimonialsSubtitle: "O'quvchilarimiz biz haqimizda",
-
-    // Gallery
-    ourGallery: 'Galereya',
-    gallerySubtitle: 'IPE School hayotidan lavhalar',
 
     // FAQ
     faq: "Ko'p so'raladigan savollar",
@@ -92,9 +81,7 @@ export const translations = {
     // Navigation
     home: 'Главная',
     courses: 'Курсы',
-    teachers: 'Преподаватели',
     results: 'Результаты',
-    gallery: 'Галерея',
     contact: 'Контакты',
 
     // Hero
@@ -120,11 +107,6 @@ export const translations = {
     learnMore: 'Подробнее',
     registerFree: 'Записаться на бесплатный урок',
 
-    // Teachers
-    ourTeachers: 'Команда преподавателей',
-    teachersSubtitle: 'Опытные и квалифицированные специалисты',
-    experience: 'опыта',
-
     // Results
     studentResults: 'Результаты студентов',
     resultsSubtitle: 'Достижения наших учеников',
@@ -132,10 +114,6 @@ export const translations = {
     // Testimonials
     testimonials: 'Отзывы',
     testimonialsSubtitle: 'Наши студенты о нас',
-
-    // Gallery
-    ourGallery: 'Галерея',
-    gallerySubtitle: 'Моменты из жизни IPE School',
 
     // FAQ
     faq: 'Часто задаваемые вопросы',
@@ -177,9 +155,7 @@ export const translations = {
     // Navigation
     home: 'Home',
     courses: 'Courses',
-    teachers: 'Teachers',
     results: 'Results',
-    gallery: 'Gallery',
     contact: 'Contact',
 
     // Hero
@@ -205,11 +181,6 @@ export const translations = {
     learnMore: 'Learn More',
     registerFree: 'Register for Free Lesson',
 
-    // Teachers
-    ourTeachers: 'Our Teachers',
-    teachersSubtitle: 'Experienced and qualified specialists',
-    experience: 'experience',
-
     // Results
     studentResults: 'Student Results',
     resultsSubtitle: 'Achievements of our students',
@@ -217,10 +188,6 @@ export const translations = {
     // Testimonials
     testimonials: 'Testimonials',
     testimonialsSubtitle: 'What our students say about us',
-
-    // Gallery
-    ourGallery: 'Gallery',
-    gallerySubtitle: 'Moments from IPE School life',
 
     // FAQ
     faq: 'Frequently Asked Questions',

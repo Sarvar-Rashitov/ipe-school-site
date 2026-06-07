@@ -21,11 +21,17 @@ interface FreeLessonModalProps {
 }
 
 const formSchema = z.object({
-  fullName: z.string().min(2, 'Ism kamida 2 ta harf'),
-  phone: z.string().min(9, 'Telefon raqamni to\'g\'ri kiriting'),
-  telegramUsername: z.string().optional(),
-  course: z.string().min(1, 'Kursni tanlang'),
-  preferredDay: z.string().min(1, 'Kunni tanlang'),
+  fullName: z.string()
+    .min(2, 'Name too short')
+    .max(100, 'Name too long')
+    .trim(),
+  phone: z.string()
+    .min(5, 'Invalid phone number')
+    .max(20, 'Phone too long')
+    .regex(/^\+?[\d\s\-()]+$/, 'Invalid phone format'),
+  telegramUsername: z.string().optional().nullable(),
+  course: z.string().min(1, 'Select a course'),
+  preferredDay: z.string().min(1, 'Select a day'),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -69,6 +75,23 @@ export function FreeLessonModal({ isOpen, onClose, preselectedCourse }: FreeLess
     setIsSubmitting(true);
 
     try {
+      // Validate form data before sending
+      console.log('📝 Form data received:', {
+        fullName: data.fullName,
+        phone: data.phone,
+        course: data.course,
+        preferredDay: data.preferredDay,
+      });
+
+      // Check if required fields are filled
+      if (!data.fullName?.trim() || !data.phone?.trim()) {
+        toast.error(t.errorMessage, {
+          description: language === 'uz' ? 'Ism va telefon raqamini kiriting!' : language === 'ru' ? 'Введите имя и номер телефона!' : 'Please enter name and phone!',
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
       // Telegram bot ga yuborish
       const message = `
 🎓 <b>BEPUL DARSGA YOZILISH</b>
@@ -103,10 +126,23 @@ ${LOCATION_IFRAME}
           description: language === 'uz' ? 'Tez orada siz bilan bog\'lanamiz!' : language === 'ru' ? 'Мы свяжемся с вами в ближайшее время!' : 'We will contact you soon!',
         });
       } else {
-        toast.error(t.errorMessage);
+        console.error('❌ Form submission failed - Telegram API did not respond successfully');
+        toast.error(t.errorMessage, {
+          description: language === 'uz' 
+            ? 'Xabari yuborishda muammo bo\'ldi. Administrator bilan bog\'laning yoki qaytadan urinib ko\'ring.' 
+            : language === 'ru' 
+            ? 'Возникла проблема при отправке сообщения. Свяжитесь с администратором или повторите попытку.' 
+            : 'Failed to send message. Please contact admin or try again.',
+        });
       }
     } catch (error) {
-      toast.error(t.errorMessage);
+      console.error('❌ Form submission error:', {
+        error: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : 'No stack trace',
+      });
+      toast.error(t.errorMessage, {
+        description: language === 'uz' ? 'Texnik xato yuz berdi. Qaytadan urinib ko\'ring.' : language === 'ru' ? 'Произошла техническая ошибка. Попробуйте снова.' : 'Technical error occurred. Please try again.',
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -165,6 +201,7 @@ ${LOCATION_IFRAME}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               onSubmit={handleSubmit(onSubmit)}
+              noValidate
               className="space-y-6 mt-4"
             >
               {/* Full Name */}

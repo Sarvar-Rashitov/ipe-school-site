@@ -14,7 +14,6 @@ import { Contact } from './pages/Contact';
 import { Results } from './pages/Results';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfService } from './pages/TermsOfService';
-import { Team } from './pages/Team';
 
 export default function App() {
   const [isFreeLessonOpen, setIsFreeLessonOpen] = useState(false);
@@ -42,7 +41,6 @@ export default function App() {
                 <Route path="/" element={<Home onOpenFreeLesson={handleOpenFreeLesson} />} />
                 <Route path="/courses" element={<Courses onOpenFreeLesson={handleOpenFreeLesson} />} />
                 <Route path="/courses/:courseId" element={<CourseDetail onOpenFreeLesson={handleOpenFreeLesson} />} />
-                <Route path="/team" element={<Team />} />
                 <Route path="/results" element={<Results />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
