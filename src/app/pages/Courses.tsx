@@ -247,3 +247,5 @@ export function Courses({ onOpenFreeLesson }: CoursesProps) {
     </div>
   );
 }
+
+export default Courses;

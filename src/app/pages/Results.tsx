@@ -278,3 +278,5 @@ export function Results() {
     </div>
   );
 }
+
+export default Results;

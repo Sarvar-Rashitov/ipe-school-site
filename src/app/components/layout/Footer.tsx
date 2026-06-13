@@ -23,7 +23,7 @@ export function Footer() {
 
   const socials = [
     { icon: Youtube, href: 'https://youtube.com/@ipeschool', label: 'YouTube', color: 'hover:bg-red-500' },
-    { icon: Instagram, href: 'https://instagram.com/ipeschool', label: 'Instagram', color: 'hover:bg-pink-500' },
+    { icon: Instagram, href: 'https://instagram.com/ipe_school', label: 'Instagram', color: 'hover:bg-pink-500' },
     { icon: Send, href: 'https://t.me/ipeschool', label: 'Telegram', color: 'hover:bg-blue-400' },
   ];
 
@@ -140,8 +140,8 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-blue-400 flex-shrink-0" />
-                <a href="tel:+998781130774" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  +998 78 113 07 74
+                <a href="tel:+998885885000" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  +998 88 588 50 00
                 </a>
               </li>
               <li className="flex items-center gap-3">

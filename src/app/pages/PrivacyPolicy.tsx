@@ -184,3 +184,5 @@ export function PrivacyPolicy() {
     </div>
   );
 }
+
+export default PrivacyPolicy;

@@ -1,10 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { Clock, BookOpen, Users, Award, CheckCircle, ArrowLeft } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { useLanguage } from '../lib/LanguageContext';
 import { courses } from '../data/courses';
+import { SITE_URL } from '../lib/seo';
 
 interface CourseDetailProps {
   onOpenFreeLesson: (courseId?: string) => void;
@@ -34,6 +36,22 @@ export function CourseDetail({ onOpenFreeLesson }: CourseDetailProps) {
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-gray-50">
+      <Helmet>
+        <title>{course.title[language]} | IPE School</title>
+        <meta name="description" content={course.description[language]} />
+        <meta property="og:title" content={`${course.title[language]} | IPE School`} />
+        <meta property="og:description" content={course.description[language]} />
+        <meta property="og:url" content={`${SITE_URL}/courses/${course.id}`} />
+        <link rel="canonical" href={`${SITE_URL}/courses/${course.id}`} />
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Course',
+          name: course.title.en,
+          description: course.description.en,
+          provider: { '@type': 'EducationalOrganization', name: 'IPE School' },
+          timeRequired: course.duration.en,
+        })}</script>
+      </Helmet>
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white py-20">
         <div className="absolute inset-0 opacity-5">
@@ -193,3 +211,5 @@ export function CourseDetail({ onOpenFreeLesson }: CourseDetailProps) {
     </div>
   );
 }
+
+export default CourseDetail;

@@ -25,7 +25,7 @@ export function FloatingActions() {
 
       {/* Call Button */}
       <motion.a
-        href="tel:+998781130774"
+        href="tel:+998885885000"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.6, type: 'spring', stiffness: 260, damping: 20 }}

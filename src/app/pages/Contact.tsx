@@ -62,8 +62,8 @@ export function Contact() {
     {
       icon: Phone,
       title: language === 'uz' ? 'Telefon' : language === 'ru' ? 'Телефон' : 'Phone',
-      value: '+998 78 113 07 74',
-      link: 'tel:+998781130774',
+      value: '+998 88 588 50 00',
+      link: 'tel:+998885885000',
     },
     {
       icon: Mail,
@@ -234,3 +234,5 @@ export function Contact() {
     </div>
   );
 }
+
+export default Contact;

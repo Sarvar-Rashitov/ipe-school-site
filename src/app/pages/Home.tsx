@@ -66,3 +66,5 @@ export function Home({ onOpenFreeLesson }: HomeProps) {
     </div>
   );
 }
+
+export default Home;
