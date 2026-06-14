@@ -93,7 +93,7 @@ export function Header({ onOpenFreeLesson }: HeaderProps) {
 
               <div className="hidden md:flex items-center gap-2">
                 <a
-                  href="tel:+998885885000"
+                  href="tel:+998555885000"
                   className="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 hover:border-blue-300 hover:text-blue-600 transition-all bg-white/80"
                 >
                   <Phone className="w-4 h-4" />
@@ -168,7 +168,7 @@ export function Header({ onOpenFreeLesson }: HeaderProps) {
 
                 <div className="mt-auto flex flex-col gap-3">
                   <a
-                    href="tel:+998885885000"
+                    href="tel:+998555885000"
                     className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-gray-200 text-gray-700 font-medium"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >

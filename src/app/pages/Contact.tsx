@@ -62,7 +62,7 @@ export function Contact() {
     {
       icon: Phone,
       title: language === 'uz' ? 'Telefon' : language === 'ru' ? 'Телефон' : 'Phone',
-      value: '+998 88 588 50 00',
+      value: '+998 55 588 50 00',
       link: 'tel:+998885885000',
     },
     {

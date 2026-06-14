@@ -20,7 +20,7 @@ export function SocialLinks() {
       icon: Instagram,
       name: 'Instagram',
       handle: '@ipeschool',
-      href: 'https://instagram.com/ipeschool',
+      href: 'https://instagram.com/ipe_school',
       color: 'from-pink-600 via-purple-600 to-orange-500',
       hoverColor: 'hover:shadow-pink-500/30',
     },
