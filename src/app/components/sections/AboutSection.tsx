@@ -39,10 +39,10 @@ export function AboutSection() {
 
   const title = language === 'uz' ? 'IPE School haqida' : language === 'ru' ? 'Об IPE School' : 'About IPE School';
   const subtitle = language === 'uz'
-    ? 'Biz 2018-yildan buyon Toshkentda zamonaviy ta\'lim xizmatlarini ko\'rsatib kelmoqdamiz. IT, matematika va til kurslari orqali minglab o\'quvchilarni muvaffaqiyatga olib chiqmoqdamiz.'
+    ? 'Biz 2016-yildan buyon Toshkentda zamonaviy ta\'lim xizmatlarini ko\'rsatib kelmoqdamiz. IT, matematika va til kurslari orqali minglab o\'quvchilarni muvaffaqiyatga olib chiqmoqdamiz.'
     : language === 'ru'
-    ? 'С 2018 года мы предоставляем современные образовательные услуги в Ташкенте. Через курсы IT, математики и языков мы ведём тысячи студентов к успеху.'
-    : 'Since 2018, we have been providing modern educational services in Tashkent. Through IT, mathematics and language courses, we are leading thousands of students to success.';
+    ? 'С 2016 года мы предоставляем современные образовательные услуги в Ташкенте. Через курсы IT, математики и языков мы ведём тысячи студентов к успеху.'
+    : 'Since 2016, we have been providing modern educational services in Tashkent. Through IT, mathematics and language courses, we are leading thousands of students to success.';
 
   return (
     <section className="py-24 bg-white overflow-hidden">
@@ -74,8 +74,8 @@ export function AboutSection() {
             {/* Stats row */}
             <div className="grid grid-cols-3 gap-6">
               {[
-                { num: '2018', label: language === 'uz' ? 'Yil tashkil' : language === 'ru' ? 'Год основания' : 'Founded' },
-                { num: '2500+', label: language === 'uz' ? 'Bitiruvchilar' : language === 'ru' ? 'Выпускников' : 'Graduates' },
+                { num: '2016', label: language === 'uz' ? 'Yil tashkil' : language === 'ru' ? 'Год основания' : 'Founded' },
+                { num: '10000+', label: language === 'uz' ? 'Bitiruvchilar' : language === 'ru' ? 'Выпускников' : 'Graduates' },
                 { num: '95%', label: language === 'uz' ? 'Muvaffaqiyat' : language === 'ru' ? 'Успех' : 'Success' },
               ].map((stat) => (
                 <div key={stat.num} className="text-center p-4 bg-gray-50 rounded-2xl">
