@@ -1,5 +1,4 @@
 // Telegram Bot Integration Utility
-
 export interface TelegramMessage {
   fullName: string;
   phone: string;
@@ -32,6 +31,15 @@ console.log('🔧 Telegram Configuration:', {
   environment: isProduction ? 'production' : 'development',
 });
 
+// Helper function to prevent user strings from crashing the Telegram HTML parser
+const escapeHTML = (text: string): string => {
+  if (!text) return '';
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+};
+
 export async function sendToTelegram(data: TelegramMessage): Promise<boolean> {
   try {
     // Check if credentials are available
@@ -51,9 +59,8 @@ export async function sendToTelegram(data: TelegramMessage): Promise<boolean> {
       return false;
     }
 
-    const text = typeof data.message === 'string' && data.message.includes('<b>')
-      ? data.message
-      : formatMessage(data);
+    // Always run formatting through the secure formatMessage method
+    const text = formatMessage(data);
 
     console.log('📤 Sending message to Telegram...', { 
       chat_id: TELEGRAM_CHAT_ID ? '***' : 'MISSING',
@@ -108,19 +115,19 @@ function formatMessage(data: TelegramMessage): string {
   const emoji = data.type === 'free-lesson' ? '📚' : '📧';
   const title = data.type === 'free-lesson' ? 'BEPUL DARSGA YOZILISH' : 'KONTAKT FORMA';
 
-  let message = `${emoji} <b>${title}</b>\n\n`;
-  message += `👤 <b>Ism:</b> ${data.fullName}\n`;
-  message += `📱 <b>Telefon:</b> ${data.phone}\n`;
+  let message = `${emoji} **${title}**\n\n`;
+  message += `👤 **Ism:** ${escapeHTML(data.fullName)}\n`;
+  message += `📱 Telefon:** ${escapeHTML(data.phone)}\n`;
 
   if (data.course) {
-    message += `📖 <b>Kurs:</b> ${data.course}\n`;
+    message += `📖 **Kurs:** ${escapeHTML(data.course)}\n`;
   }
 
-  if (data.message && !data.message.includes('<b>')) {
-    message += `\n💬 <b>Xabar:</b>\n${data.message}\n`;
+  if (data.message) {
+    message += `\n💬 **Xabar:**\n${escapeHTML(data.message)}\n`;
   }
 
-  message += `\n⏰ <b>Vaqt:</b> ${new Date().toLocaleString('uz-UZ')}`;
+  message += `\n⏰ **Vaqt:** ${new Date().toLocaleString('uz-UZ')}`;
 
   return message;
 }

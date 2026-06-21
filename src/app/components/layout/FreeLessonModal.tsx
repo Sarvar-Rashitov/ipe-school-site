@@ -94,22 +94,17 @@ export function FreeLessonModal({ isOpen, onClose, preselectedCourse }: FreeLess
 
       // Telegram bot ga yuborish
       const message = `
-🎓 <b>BEPUL DARSGA YOZILISH</b>
+🎓 **BEPUL DARSGA YOZILISH**
 
-👤 <b>Ism:</b> ${data.fullName}
-📱 <b>Telefon:</b> ${data.phone}
-${data.telegramUsername ? `📲 <b>Telegram:</b> @${data.telegramUsername}\n` : ''}
-📚 <b>Kurs:</b> ${data.course}
-📅 <b>Afzal kun:</b> ${weekDays.find(d => d.value === data.preferredDay)?.label[language] || data.preferredDay}
+👤 **Ism:** ${data.fullName}
+📱 **Telefon:** ${data.phone}
+${data.telegramUsername ? `📲 **Telegram:** @${data.telegramUsername}\n` : ''}
+📚 **Kurs:** ${data.course}
+📅 **Afzal kun:** ${weekDays.find(d => d.value === data.preferredDay)?.label[language] || data.preferredDay}
 
-⏰ <b>Vaqt:</b> ${new Date().toLocaleString()}
+⏰ **Vaqt:** ${new Date().toLocaleString()}
 
-📍 <b>Manzil:</b>
-IPE SCHOOL - O'quv markazi
-Toshkent, O'zbekiston
 
-🗺 Manzilni saqlash:
-${LOCATION_IFRAME}
       `.trim();
 
       const success = await sendToTelegram({
@@ -158,7 +153,7 @@ ${LOCATION_IFRAME}
   const handleSaveLocation = () => {
     // Telegram bot ga manzilni saqlash uchun xabar
     const locationMessage = `
-📍 <b>MANZIL MA'LUMOTI</b>
+📍 **MANZIL MA'LUMOTI**
 
 🏫 IPE SCHOOL - O'quv markazi
 📌 Toshkent, O'zbekiston
