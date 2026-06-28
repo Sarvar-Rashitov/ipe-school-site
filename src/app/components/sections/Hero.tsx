@@ -42,8 +42,20 @@ export function Hero({ onOpenFreeLesson }: HeroProps) {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 pt-20"
+      className="relative min-h-screen flex items-center overflow-hidden pt-20"
     >
+      {/* Background image with overlay */}
+      <div className="absolute inset-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundImage: 'url(/images/hero-section.jpg)',
+          }}
+        />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-blue-950/85 to-slate-900/90" />
+      </div>
+
       {/* Background grid */}
       <div className="absolute inset-0 opacity-10">
         <div
@@ -64,12 +76,13 @@ export function Hero({ onOpenFreeLesson }: HeroProps) {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            className="pl-4 md:pl-6 lg:pl-8"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-400/30 text-blue-300 rounded-full text-sm font-medium mb-6 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 text-white/90 rounded-full text-sm font-medium mb-6 backdrop-blur-sm hover:bg-white/15 transition-colors"
             >
               <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
               Professional IT & Education Center
@@ -81,11 +94,11 @@ export function Hero({ onOpenFreeLesson }: HeroProps) {
               transition={{ delay: 0.3 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white"
             >
-              <span className="text-blue-400">I</span>
-              <span className="text-red-400">P</span>
-              <span className="text-blue-400">E</span>
+              <span className="text-blue-300">I</span>
+              <span className="text-red-300">P</span>
+              <span className="text-blue-300">E</span>
               {' School bilan '}
-              <span className="bg-gradient-to-r from-blue-400 to-red-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-200 via-white to-red-200 bg-clip-text text-transparent">
                 {language === 'uz' ? 'kelajagingizni yarating' : language === 'ru' ? 'создайте своё будущее' : 'create your future'}
               </span>
             </motion.h1>
@@ -94,7 +107,7 @@ export function Hero({ onOpenFreeLesson }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-lg text-blue-100/80 mb-8 leading-relaxed"
+              className="text-lg text-white/75 mb-8 leading-relaxed"
             >
               {t.heroSubtitle}
             </motion.p>
@@ -108,16 +121,18 @@ export function Hero({ onOpenFreeLesson }: HeroProps) {
               <Button
                 onClick={onOpenFreeLesson}
                 size="lg"
-                className="bg-gradient-to-r from-blue-500 to-red-500 hover:from-blue-600 hover:to-red-600 shadow-xl hover:shadow-2xl transition-all duration-300 text-base px-8 h-14 text-white border-0"
+                className="group bg-gradient-to-r from-blue-600 via-purple-600 to-red-500 bg-[length:200%_auto] hover:bg-[position:right_center] shadow-[0_0_15px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(239,68,68,0.6)] transition-all duration-500 hover:-translate-y-1 hover:scale-105 border border-white/20 cursor-pointer text-base px-8 h-14 font-bold"
               >
-                {t.heroCtaPrimary}
-                <ArrowRight className="ml-2 w-5 h-5" />
+                <span className="text-white animate-pulse drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] tracking-wide flex items-center">
+                  {t.heroCtaPrimary}
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </span>
               </Button>
               <Button
                 onClick={() => document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth' })}
                 size="lg"
                 variant="outline"
-                className="text-base px-8 h-14 border-white/30 text-white hover:bg-white/10 hover:border-white/50"
+                className="text-base px-8 h-14 border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300 hover:-translate-y-1 hover:scale-105 cursor-pointer font-medium"
               >
                 {t.heroCtaSecondary}
               </Button>

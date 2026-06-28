@@ -91,7 +91,7 @@ export const courses: Course[] = [
     duration: { uz: '8 oy', ru: '8 месяцев', en: '8 months' },
     level: { uz: 'Boshlang\'ichdan professional darajagacha', ru: 'От начального до профессионального', en: 'Beginner to Professional' },
     features: {
-      uz: ['Python, FastAPI, Django', 'LLM & ChatGPT integratsiyasi', 'NLP texnologiyalari', 'REST API yaratish', 'Database (PostgreSQL)', 'Real loyihalar'],
+      uz: ['Python, FastAPI, Django', 'LLM(Open AI & Cloude) integratsiyasi', 'NLP texnologiyalari', 'REST API yaratish', 'Database (PostgreSQL)', 'Real loyihalar'],
       ru: ['Python, FastAPI, Django', 'Интеграция LLM & ChatGPT', 'NLP технологии', 'Создание REST API', 'Базы данных (PostgreSQL)', 'Реальные проекты'],
       en: ['Python, FastAPI, Django', 'LLM & ChatGPT integration', 'NLP technologies', 'REST API creation', 'Database (PostgreSQL)', 'Real projects'],
     },

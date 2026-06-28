@@ -80,7 +80,7 @@ export function FreeLessonModal({ isOpen, onClose, preselectedCourse }: FreeLess
         fullName: data.fullName,
         phone: data.phone,
         course: data.course,
-        preferredDay: data.preferredDay,
+        preferredDay: data.preferredDay,  
       });
 
       // Check if required fields are filled
@@ -91,6 +91,10 @@ export function FreeLessonModal({ isOpen, onClose, preselectedCourse }: FreeLess
         setIsSubmitting(false);
         return;
       }
+
+       if (typeof window !== 'undefined' && (window as any).fbq) {
+            (window as any).fbq('track', 'Lead');
+        }
 
       // Telegram bot ga yuborish
       const message = `

@@ -35,7 +35,7 @@ export function CourseDetail({ onOpenFreeLesson }: CourseDetailProps) {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-gray-50">
+    <div className="min-h-screen pb-20 bg-gray-50">
       <Helmet>
         <title>{course.title[language]} | IPE School</title>
         <meta name="description" content={course.description[language]} />
@@ -53,7 +53,7 @@ export function CourseDetail({ onOpenFreeLesson }: CourseDetailProps) {
         })}</script>
       </Helmet>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white py-20">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white pt-28 pb-20">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-500 rounded-full blur-3xl" />

@@ -34,7 +34,7 @@ export function Footer() {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-500 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 py-16 relative z-10">
+      <div className="container mx-auto px-4 pt-16 pb-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <motion.div
@@ -53,8 +53,8 @@ export function Footer() {
               {language === 'uz'
                 ? 'Zamonaviy ta\'lim, professional o\'qituvchilar va IT-texnologiyalar orqali kelajagingizni yarating.'
                 : language === 'ru'
-                ? 'Создайте своё будущее с современным образованием, профессиональными преподавателями и IT-технологиями.'
-                : 'Build your future through modern education, professional teachers and IT technologies.'}
+                  ? 'Создайте своё будущее с современным образованием, профессиональными преподавателями и IT-технологиями.'
+                  : 'Build your future through modern education, professional teachers and IT technologies.'}
             </p>
             <div className="flex gap-3">
               {socials.map((social) => (
@@ -167,12 +167,18 @@ export function Footer() {
           viewport={{ once: true }}
           className="pt-8 border-t border-white/10"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm">
-              © 2018 - {new Date().getFullYear()} IPE School (Inter Prof Education School).{' '}
-              {language === 'uz' ? 'Barcha huquqlar himoyalangan.' : language === 'ru' ? 'Все права защищены.' : 'All rights reserved.'}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+            <p className="text-gray-500 text-sm text-center md:text-left order-2 md:order-1">
+              © 2016 - {new Date().getFullYear()} IPE School.
             </p>
-            <div className="flex gap-6">
+            <div className="text-gray-500 text-sm text-center order-3 md:order-2">
+              {language === 'uz' ? 'Sayt ' : language === 'ru' ? 'Сайт разработан ' : 'Developed by '}
+              <a href="https://testium.uz" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 transition-colors font-medium">
+                Testium.uz
+              </a>
+              {language === 'uz' ? ' tomonidan ishlab chiqilgan.' : ''}
+            </div>
+            <div className="flex justify-center md:justify-end gap-6 order-1 md:order-3">
               <Link to="/privacy-policy" className="text-gray-500 hover:text-white text-sm transition-colors">
                 {language === 'uz' ? 'Maxfiylik siyosati' : language === 'ru' ? 'Политика конфиденциальности' : 'Privacy Policy'}
               </Link>

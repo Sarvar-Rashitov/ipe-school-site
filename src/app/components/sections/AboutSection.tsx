@@ -47,7 +47,7 @@ export function AboutSection() {
   return (
     <section className="py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center px-4 md:px-6 lg:px-8">
           {/* Left - Text */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}

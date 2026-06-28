@@ -39,17 +39,15 @@ export function Header({ onOpenFreeLesson }: HeaderProps) {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed z-50 transition-all duration-500 ${
-          isScrolled
-            ? 'top-3 left-4 right-4 md:left-8 md:right-8'
-            : 'top-0 left-0 right-0'
+        className={`fixed w-full z-50 transition-all duration-500 ${
+          isScrolled ? 'top-3' : 'top-0'
         }`}
       >
         <div
           className={`transition-all duration-500 ${
             isScrolled
-              ? 'bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl border border-gray-100/50 mx-auto max-w-7xl'
-              : 'bg-white/90 backdrop-blur-md border-b border-gray-100'
+              ? 'bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl border border-gray-200/50 mx-4 md:mx-8 max-w-7xl lg:mx-auto lg:left-0 lg:right-0'
+              : 'bg-transparent border-b border-white/10'
           }`}
         >
           <div className={`flex items-center justify-between ${isScrolled ? 'px-6 h-16' : 'px-6 md:px-12 h-20'} transition-all duration-300`}>
@@ -58,11 +56,15 @@ export function Header({ onOpenFreeLesson }: HeaderProps) {
               <img
                 src={logoImg}
                 alt="IPE School Logo"
-                className="h-10 w-10 object-contain"
+                className="h-10 w-10 object-contain rounded-full border-2 border-white/20 transition-transform duration-300 group-hover:scale-110"
               />
               <div>
-                <span className="text-lg font-bold text-gray-900">School</span>
-                <div className="hidden sm:block text-xs text-gray-500 leading-none">Inter Prof Education</div>
+                <span className={`text-lg font-bold transition-all duration-300 group-hover:text-blue-500 ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
+                  School
+                </span>
+                <div className={`hidden sm:block text-xs leading-none transition-all duration-300 group-hover:text-blue-400 ${isScrolled ? 'text-gray-500' : 'text-white/70'}`}>
+                  Inter Prof Education
+                </div>
               </div>
             </Link>
 
@@ -72,8 +74,10 @@ export function Header({ onOpenFreeLesson }: HeaderProps) {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className={`text-sm font-medium transition-colors hover:text-blue-600 ${
-                    location.pathname === link.href ? 'text-blue-600' : 'text-gray-700'
+                  className={`text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${
+                    location.pathname === link.href 
+                      ? isScrolled ? 'text-blue-600' : 'text-blue-400'
+                      : isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white/90 hover:text-blue-400'
                   }`}
                 >
                   {link.label}
@@ -86,7 +90,11 @@ export function Header({ onOpenFreeLesson }: HeaderProps) {
               {/* Language Switcher */}
               <button
                 onClick={cycleLanguage}
-                className="px-3 py-1.5 text-xs font-bold border border-gray-200 rounded-lg hover:border-blue-300 hover:text-blue-600 transition-all bg-white/80"
+                className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${
+                  isScrolled
+                    ? 'border border-gray-200 hover:border-blue-300 hover:text-blue-600 bg-white/80 text-gray-700'
+                    : 'border border-white/20 hover:border-white/40 hover:bg-white/10 bg-white/5 text-white'
+                }`}
               >
                 {languageDisplay[language]}
               </button>
@@ -94,7 +102,11 @@ export function Header({ onOpenFreeLesson }: HeaderProps) {
               <div className="hidden md:flex items-center gap-2">
                 <a
                   href="tel:+998555885000"
-                  className="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 hover:border-blue-300 hover:text-blue-600 transition-all bg-white/80"
+                  className={`w-9 h-9 flex items-center justify-center rounded-lg transition-all ${
+                    isScrolled
+                      ? 'border border-gray-200 hover:border-blue-300 hover:text-blue-600 bg-white/80 text-gray-700'
+                      : 'border border-white/20 hover:border-white/40 hover:bg-white/10 bg-white/5 text-white'
+                  }`}
                 >
                   <Phone className="w-4 h-4" />
                 </a>
@@ -102,16 +114,22 @@ export function Header({ onOpenFreeLesson }: HeaderProps) {
                   href="https://t.me/ipeschool"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 hover:border-blue-300 hover:text-blue-600 transition-all bg-white/80"
+                  className={`w-9 h-9 flex items-center justify-center rounded-lg transition-all ${
+                    isScrolled
+                      ? 'border border-gray-200 hover:border-blue-300 hover:text-blue-600 bg-white/80 text-gray-700'
+                      : 'border border-white/20 hover:border-white/40 hover:bg-white/10 bg-white/5 text-white'
+                  }`}
                 >
                   <Send className="w-4 h-4" />
                 </a>
                 <Button
                   onClick={onOpenFreeLesson}
                   size="sm"
-                  className="bg-gradient-to-r from-blue-600 to-red-500 hover:from-blue-700 hover:to-red-600 text-white shadow-md"
+                  className="group bg-gradient-to-r from-blue-600 via-purple-600 to-red-500 bg-[length:200%_auto] hover:bg-[position:right_center] font-bold shadow-[0_0_15px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(239,68,68,0.6)] transition-all duration-500 hover:-translate-y-1 hover:scale-105 border border-white/20 cursor-pointer"
                 >
-                  {t.heroCtaPrimary}
+                  <span className="text-white animate-pulse drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] tracking-wide">
+                    {t.heroCtaPrimary}
+                  </span>
                 </Button>
               </div>
 
@@ -119,7 +137,7 @@ export function Header({ onOpenFreeLesson }: HeaderProps) {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden"
+                className={`lg:hidden ${isScrolled ? 'text-gray-900' : 'text-white'}`}
               >
                 {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </Button>
@@ -191,9 +209,11 @@ export function Header({ onOpenFreeLesson }: HeaderProps) {
                       setIsMobileMenuOpen(false);
                     }}
                     size="lg"
-                    className="w-full bg-gradient-to-r from-blue-600 to-red-500 hover:from-blue-700 hover:to-red-600"
+                    className="w-full group bg-gradient-to-r from-blue-600 via-purple-600 to-red-500 bg-[length:200%_auto] hover:bg-[position:right_center] font-bold shadow-[0_0_15px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(239,68,68,0.6)] transition-all duration-500 hover:-translate-y-1 hover:scale-105 border border-white/20 cursor-pointer"
                   >
-                    {t.heroCtaPrimary}
+                    <span className="text-white animate-pulse drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] tracking-wide text-lg">
+                      {t.heroCtaPrimary}
+                    </span>
                   </Button>
                 </div>
               </div>
